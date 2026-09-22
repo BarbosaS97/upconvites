@@ -26,6 +26,12 @@ body.admin {
   place-items: center;
   padding: 24px;
 }
+/* o [hidden] do navegador não vence sozinho o "display: grid" acima
+   (mesma especificidade, e essa regra vem depois) — por isso reforça aqui */
+.admin-login[hidden],
+.admin-panel[hidden] {
+  display: none;
+}
 
 .admin-login__card {
   width: 100%;

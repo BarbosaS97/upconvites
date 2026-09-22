@@ -201,8 +201,6 @@
       });
   });
 
-  /* ---------- início: já está logado? (cookie ainda válido) ---------- */
-  fetch('/api/admin/convites').then(function (resp) {
-    if (resp.ok) mostrarPainel();
-  });
+  // A senha sempre é pedida ao abrir o painel — não pula direto pra lista
+  // de convites mesmo que o cookie da sessão anterior ainda esteja válido.
 })();

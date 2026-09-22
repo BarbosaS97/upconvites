@@ -3,8 +3,8 @@
    JavaScript puro, sem bibliotecas.
 
    ÍNDICE
-   1. CONFIG  <-- ✏️ EDITE AQUI: WhatsApp, e-mail e Instagram
-   2. Links de contato (WhatsApp / e-mail / Instagram)
+   1. CONFIG  <-- ✏️ EDITE AQUI: WhatsApp
+   2. Links de contato (WhatsApp)
    3. Ano do rodapé
    4. Menu (cabeçalho e menu mobile)
    5. Animações ao rolar (scroll reveal)
@@ -22,12 +22,6 @@
     // ✏️ EDITAR: número do WhatsApp com código do país + DDD, só números.
     // Exemplo: Brasil (55) + DDD 11 + número 91234-5678  ->  '5511912345678'
     whatsapp: '5561982395208',
-
-    // ✏️ EDITAR: seu e-mail
-    email: 'contato@seudominio.com.br',
-
-    // ✏️ EDITAR: seu Instagram (sem o @)
-    instagram: 'upconvites',
 
     // Mensagem padrão do WhatsApp (botões que não têm uma mensagem própria)
     defaultMessage: 'Olá! Vim pelo site da UpConvites e quero saber mais.'
@@ -47,20 +41,6 @@
     el.href = waLink(el.getAttribute('data-wa-msg'));
     el.target = '_blank';
     el.rel = 'noopener noreferrer';
-  });
-
-  document.querySelectorAll('[data-email]').forEach(function (el) {
-    el.href = 'mailto:' + CONFIG.email;
-  });
-  document.querySelectorAll('[data-email-text]').forEach(function (el) {
-    el.textContent = CONFIG.email;
-  });
-
-  document.querySelectorAll('[data-insta]').forEach(function (el) {
-    el.href = 'https://instagram.com/' + CONFIG.instagram;
-  });
-  document.querySelectorAll('[data-insta-text]').forEach(function (el) {
-    el.textContent = '@' + CONFIG.instagram;
   });
 
   /* ---------- 3. ANO DO RODAPÉ ---------------------------------------- */

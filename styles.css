@@ -329,6 +329,8 @@ a { color: inherit; }
     radial-gradient(rgba(22, 48, 58, .18) 2px, transparent 2.5px) 0 0 / 14px 14px,
     linear-gradient(135deg, #2E7BFF, #6A5CFF 55%, #FF5C7A);
 }
+/* Capa aniversário tema ballet: rosé suave */
+.work__cover--ballet { background: linear-gradient(135deg, #FDE7F0, #FBC9DC 55%, #F7A8C4); }
 .work__body { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 24px; flex: 1; }
 .work__body h3 { font-size: 1.25rem; }
 .work__body p { color: var(--muted); }
@@ -497,7 +499,7 @@ a { color: inherit; }
     opacity: .7; z-index: 0;
   }
 
-  .portfolio { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .portfolio { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
   .features { grid-template-columns: repeat(4, 1fr); gap: 20px; }
   .panel { grid-template-columns: 1fr 1fr; gap: 72px; }
   .contact__grid { grid-template-columns: 1.1fr .9fr; gap: 72px; }

@@ -30,6 +30,7 @@ module.exports = async (req, res) => {
       if (!convite) return res.status(404).json({ erro: 'Convite não encontrado.' });
       res.status(200).json(convite);
     } catch (err) {
+      console.error('PATCH /api/admin/convites/[id] falhou:', err);
       const duplicado = /duplicate key|already exists/i.test(err.message);
       res.status(duplicado ? 409 : 500).json({ erro: duplicado ? 'Já existe um convite com esse slug.' : err.message });
     }
@@ -41,6 +42,7 @@ module.exports = async (req, res) => {
       await excluirConvite(id);
       res.status(204).end();
     } catch (err) {
+      console.error('DELETE /api/admin/convites/[id] falhou:', err);
       res.status(500).json({ erro: err.message });
     }
     return;

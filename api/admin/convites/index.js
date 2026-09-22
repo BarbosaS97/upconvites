@@ -9,6 +9,7 @@ module.exports = async (req, res) => {
     try {
       res.status(200).json(await listarConvites());
     } catch (err) {
+      console.error('GET /api/admin/convites falhou:', err);
       res.status(500).json({ erro: err.message });
     }
     return;
@@ -35,6 +36,7 @@ module.exports = async (req, res) => {
       });
       res.status(201).json(convite);
     } catch (err) {
+      console.error('POST /api/admin/convites falhou:', err);
       const duplicado = /duplicate key|already exists/i.test(err.message);
       res.status(duplicado ? 409 : 500).json({ erro: duplicado ? 'Já existe um convite com esse slug.' : err.message });
     }

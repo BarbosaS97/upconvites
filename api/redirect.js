@@ -21,6 +21,7 @@ module.exports = async (req, res) => {
     res.writeHead(302, { Location: convite.url_destino });
     res.end();
   } catch (err) {
+    console.error('GET /api/redirect falhou:', err);
     res.status(500).send('Erro ao buscar o convite. Tente novamente em instantes.');
   }
 };

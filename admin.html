@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel admin — UpConvites</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin">
+
+  <!-- ===================== TELA DE LOGIN ===================== -->
+  <main class="admin-login" id="tela-login">
+    <form class="admin-login__card" id="form-login">
+      <p class="eyebrow">UpConvites</p>
+      <h1>Painel admin</h1>
+      <p class="admin-login__hint">Digite a senha para gerenciar os convites.</p>
+      <label class="admin-field">
+        Senha
+        <input type="password" name="senha" autocomplete="current-password" required autofocus>
+      </label>
+      <p class="admin-error" id="erro-login" role="alert" hidden></p>
+      <button class="btn btn--gold" type="submit">Entrar</button>
+    </form>
+  </main>
+
+  <!-- ===================== PAINEL ===================== -->
+  <main class="admin-panel" id="tela-painel" hidden>
+    <header class="admin-panel__head">
+      <div>
+        <p class="eyebrow">UpConvites</p>
+        <h1>Convites</h1>
+      </div>
+      <div class="admin-panel__actions">
+        <button class="btn btn--gold" type="button" id="btn-novo">+ Novo convite</button>
+        <button class="btn btn--outline" type="button" id="btn-sair">Sair</button>
+      </div>
+    </header>
+
+    <p class="admin-status" id="status-lista" hidden></p>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th>Link UpConvites</th>
+            <th>Destino</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="lista-convites">
+          <!-- preenchido pelo admin.js -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- ===================== MODAL: NOVO / EDITAR CONVITE ===================== -->
+  <dialog class="admin-modal" id="modal-convite">
+    <form class="admin-modal__card" id="form-convite" method="dialog">
+      <h2 id="modal-titulo">Novo convite</h2>
+
+      <label class="admin-field">
+        Nome do cliente
+        <input type="text" name="nome_cliente" required placeholder="Ex.: Thalyta e Paulo">
+      </label>
+
+      <label class="admin-field">
+        Link no UpConvites <span class="admin-field__hint">(gerado do nome — pode editar)</span>
+        <div class="admin-field__prefixed">
+          <span>upconvites.com.br/</span>
+          <input type="text" name="slug" required placeholder="thalyta-e-paulo" pattern="[a-z0-9]+(-[a-z0-9]+)*">
+        </div>
+      </label>
+
+      <label class="admin-field">
+        Link de destino (onde o convite está hospedado hoje)
+        <input type="url" name="url_destino" required placeholder="https://thalytaepaulo.vercel.app">
+      </label>
+
+      <label class="admin-field">
+        Tipo de evento <span class="admin-field__hint">(opcional)</span>
+        <input type="text" name="tipo_evento" placeholder="Casamento, aniversário...">
+      </label>
+
+      <label class="admin-field admin-field--checkbox">
+        <input type="checkbox" name="ativo" checked>
+        Link ativo (desmarque para pausar sem apagar)
+      </label>
+
+      <p class="admin-error" id="erro-modal" role="alert" hidden></p>
+
+      <div class="admin-modal__actions">
+        <button class="btn btn--outline" type="button" id="btn-cancelar">Cancelar</button>
+        <button class="btn btn--gold" type="submit" id="btn-salvar">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="admin.js"></script>
+</body>
+</html>

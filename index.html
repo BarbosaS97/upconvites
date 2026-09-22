@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UpConvites — Convites digitais personalizados</title>
+  <meta name="description" content="Convites digitais personalizados e interativos para casamento, aniversário, batizado, formatura e mais. Contagem regressiva, confirmação de presença pelo WhatsApp e painel do cliente.">
+  <meta name="theme-color" content="#072F3A">
+
+  <!-- Open Graph (pré-visualização ao compartilhar o link) -->
+  <meta property="og:title" content="UpConvites — Cada convite, uma história.">
+  <meta property="og:description" content="Convites digitais personalizados e interativos, com confirmação de presença pelo WhatsApp.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Favicon inline (SVG), sem arquivo externo -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23072F3A'/%3E%3Cpath d='M14 22h36v22a3 3 0 0 1-3 3H17a3 3 0 0 1-3-3z' fill='none' stroke='%23C9A24B' stroke-width='3.5' stroke-linejoin='round'/%3E%3Cpath d='m15 24 17 12 17-12' fill='none' stroke='%23C9A24B' stroke-width='3.5' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+  <!-- Fontes: Poppins (títulos), Inter (texto) e Playfair Display (destaques elegantes) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,500;1,600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Marca a página como "JS ativo" antes de pintar (evita piscar nas animações de scroll) -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+
+<body>
+
+  <!-- =====================================================================
+       ÍCONES (SVG inline, estilo Lucide). Uso: <svg class="icon"><use href="#i-nome"/></svg>
+       ===================================================================== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></symbol>
+    <symbol id="i-pointer" viewBox="0 0 24 24"><path d="m9 9 5 12 1.774-5.226L21 14 9 9z"/><path d="m16.071 16.071 4.243 4.243"/><path d="m7.188 2.239.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656-2.12 2.122"/></symbol>
+    <symbol id="i-timer" viewBox="0 0 24 24"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+    <symbol id="i-dashboard" viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+    <symbol id="i-insta" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- =====================================================================
+       CABEÇALHO / MENU
+       ===================================================================== -->
+  <header class="header" id="topo">
+    <div class="container header__inner">
+      <a class="brand" href="#inicio" aria-label="UpConvites — início">
+        <span class="brand__mark" aria-hidden="true"><svg class="icon"><use href="#i-mail"/></svg></span>
+        <span class="brand__name">UpConvites</span>
+      </a>
+
+      <nav class="nav" id="menu" aria-label="Navegação principal">
+        <a href="#sobre">Sobre</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#portfolio">Exemplos</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#faq">Dúvidas</a>
+        <a class="btn btn--gold btn--sm nav__cta" data-wa href="#contato">Quero meu convite</a>
+      </nav>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+        <svg class="icon icon--open"><use href="#i-menu"/></svg>
+        <svg class="icon icon--close"><use href="#i-close"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- =====================================================================
+         1. HERO
+         ===================================================================== -->
+    <section class="hero" id="inicio">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container hero__grid">
+
+        <div class="hero__text">
+          <p class="eyebrow eyebrow--light reveal">Convites digitais personalizados</p>
+          <h1 class="hero__title reveal" style="--d:1">UpConvites</h1>
+          <p class="hero__slogan reveal" style="--d:2">Cada convite, uma história.</p>
+          <p class="hero__sub reveal" style="--d:3">
+            Criamos convites digitais interativos para o seu grande dia — com contagem regressiva,
+            confirmação de presença pelo WhatsApp e um painel para você acompanhar quem vai.
+          </p>
+
+          <div class="hero__actions reveal" style="--d:4">
+            <!-- CTA principal: o link do WhatsApp é montado pelo script.js (veja CONFIG) -->
+            <a class="btn btn--gold btn--lg" data-wa data-wa-msg="Olá! Quero criar meu convite digital." href="#contato">
+              <svg class="icon"><use href="#i-chat"/></svg> Quero meu convite
+            </a>
+            <a class="btn btn--ghost btn--lg" href="#portfolio">Ver exemplos</a>
+          </div>
+
+          <ul class="chips reveal" style="--d:5" aria-label="Tipos de evento">
+            <li>Casamento</li><li>Aniversário</li><li>Batizado</li><li>Formatura</li><li>e muito mais</li>
+          </ul>
+        </div>
+
+        <!-- Mockup de celular com um mini convite (ilustrativo) -->
+        <div class="hero__visual reveal" style="--d:2" aria-hidden="true">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <div class="phone__screen">
+              <span class="mini__star"><svg class="icon"><use href="#i-sparkles"/></svg></span>
+              <p class="mini__kicker">Você está convidado</p>
+              <p class="mini__title">Sua história<br>começa aqui</p>
+              <div class="mini__count">
+                <div><b data-mini="d">00</b><small>dias</small></div>
+                <div><b data-mini="h">00</b><small>horas</small></div>
+                <div><b data-mini="m">00</b><small>min</small></div>
+                <div><b data-mini="s">00</b><small>seg</small></div>
+              </div>
+              <span class="mini__btn">Confirmar presença</span>
+              <span class="mini__btn mini__btn--line"><svg class="icon"><use href="#i-pin"/></svg> Como chegar</span>
+            </div>
+          </div>
+          <span class="float float--a"><svg class="icon"><use href="#i-check"/></svg> Presença confirmada</span>
+          <span class="float float--b"><svg class="icon"><use href="#i-music"/></svg> Música de fundo</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         2. SOBRE O SERVIÇO
+         ===================================================================== -->
+    <section class="section section--cream" id="sobre">
+      <div class="container about">
+        <div class="about__text">
+          <p class="eyebrow reveal">Sobre o serviço</p>
+          <h2 class="section__title reveal" style="--d:1">O que é um convite digital interativo?</h2>
+          <p class="reveal" style="--d:2">
+            É um convite que vive em um link. Em vez de uma imagem parada, seus convidados abrem uma
+            página feita sob medida para o seu evento, com animações, botões, mapa, contagem regressiva
+            e confirmação de presença.
+          </p>
+          <p class="reveal" style="--d:3">
+            Você compartilha no WhatsApp, no Instagram ou onde preferir — e acompanha as respostas
+            sem precisar anotar nada.
+          </p>
+        </div>
+
+        <!-- Diferenciais -->
+        <div class="about__cards">
+          <article class="card reveal">
+            <span class="card__icon"><svg class="icon"><use href="#i-palette"/></svg></span>
+            <h3>Personalização total</h3>
+            <p>Cores, tema, fotos e textos do jeito que você imaginou.</p>
+          </article>
+          <article class="card reveal" style="--d:1">
+            <span class="card__icon"><svg class="icon"><use href="#i-pointer"/></svg></span>
+            <h3>Botões interativos</h3>
+            <p>Mapa, confirmação, lista de presentes e o que mais fizer sentido.</p>
+          </article>
+          <article class="card reveal" style="--d:2">
+            <span class="card__icon"><svg class="icon"><use href="#i-timer"/></svg></span>
+            <h3>Contagem regressiva</h3>
+            <p>Um relógio que aumenta a expectativa até o grande dia.</p>
+          </article>
+          <article class="card reveal" style="--d:3">
+            <span class="card__icon"><svg class="icon"><use href="#i-chat"/></svg></span>
+            <h3>Confirmação automática</h3>
+            <p>O convidado confirma com um toque, pelo WhatsApp.</p>
+          </article>
+          <article class="card card--wide reveal" style="--d:4">
+            <span class="card__icon"><svg class="icon"><use href="#i-dashboard"/></svg></span>
+            <div>
+              <h3>Painel do cliente</h3>
+              <p>Um link exclusivo para você acompanhar a lista de confirmados.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         3. COMO FUNCIONA
+         ===================================================================== -->
+    <section class="section section--white" id="como-funciona">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow reveal">Como funciona</p>
+          <h2 class="section__title reveal" style="--d:1">Do primeiro contato ao convite no ar</h2>
+        </header>
+
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step__num">1</span>
+            <h3>Você conta sua ideia</h3>
+            <p>Entre em contato e conte como imagina o convite e o seu evento.</p>
+          </li>
+          <li class="step reveal" style="--d:1">
+            <span class="step__num">2</span>
+            <h3>Criamos o convite</h3>
+            <p>Desenvolvemos um convite personalizado, com a cara da sua história.</p>
+          </li>
+          <li class="step reveal" style="--d:2">
+            <span class="step__num">3</span>
+            <h3>Você aprova</h3>
+            <p>Depois da sua aprovação, você recebe o link do convite e o painel do cliente.</p>
+          </li>
+          <li class="step reveal" style="--d:3">
+            <span class="step__num">4</span>
+            <h3>Compartilha e acompanha</h3>
+            <p>Envie aos convidados e acompanhe as confirmações de presença.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         4. PORTFÓLIO / EXEMPLOS
+         ===================================================================== -->
+    <section class="section section--cream" id="portfolio">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow reveal">Portfólio</p>
+          <h2 class="section__title reveal" style="--d:1">Convites que já saíram da fábrica</h2>
+          <p class="section__lead reveal" style="--d:2">Abra os exemplos no celular ou no computador e veja tudo funcionando.</p>
+        </header>
+
+        <div class="portfolio">
+
+          <!-- Exemplo A: Casamento -->
+          <article class="work reveal">
+            <!-- ✏️ CAPA: hoje é um gradiente + SVG. Para usar uma imagem real, troque o conteúdo
+                 de .work__cover por: <img src="img/capa-casamento.jpg" alt="Capa do convite de casamento"> -->
+            <div class="work__cover work__cover--wedding" aria-hidden="true">
+              <svg viewBox="0 0 200 120" class="work__art">
+                <circle cx="82" cy="64" r="34" fill="none" stroke="#C9A24B" stroke-width="4"/>
+                <circle cx="118" cy="64" r="34" fill="none" stroke="#D9B865" stroke-width="4"/>
+                <path d="m100 22 4 8 8 1-6 6 2 8-8-4-8 4 2-8-6-6 8-1z" fill="#C9A24B"/>
+              </svg>
+              <span class="work__tag">Casamento</span>
+            </div>
+            <div class="work__body">
+              <h3>Casamento — Thalyta &amp; Paulo</h3>
+              <p>Um convite elegante e romântico, com contagem regressiva, confirmação de presença e botão “saiba como chegar”.</p>
+              <a class="btn btn--primary" href="https://thalytaepaulo.vercel.app/?demo" target="_blank" rel="noopener noreferrer">
+                Ver convite <svg class="icon"><use href="#i-external"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Exemplo B: Aniversário -->
+          <article class="work reveal" style="--d:1">
+            <!-- ✏️ CAPA: troque por <img src="img/capa-noah.jpg" alt="Capa do convite de aniversário"> se quiser -->
+            <div class="work__cover work__cover--kids" aria-hidden="true">
+              <svg viewBox="0 0 200 120" class="work__art">
+                <path d="m100 18 12 28 30 3-23 20 7 30-26-16-26 16 7-30-23-20 30-3z" fill="#FFD23F" stroke="#16303A" stroke-width="4" stroke-linejoin="round"/>
+                <text x="100" y="66" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="700" font-size="30" fill="#16303A">4</text>
+              </svg>
+              <span class="work__tag">Aniversário infantil</span>
+            </div>
+            <div class="work__body">
+              <h3>Aniversário — Noah faz 4</h3>
+              <p>Um convite divertido e colorido, com tema de super-heróis, vídeo, contagem regressiva e confirmação pelo WhatsApp.</p>
+              <a class="btn btn--primary" href="https://barbosas97.github.io/convite-noah/?demo" target="_blank" rel="noopener noreferrer">
+                Ver convite <svg class="icon"><use href="#i-external"/></svg>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         5. FUNCIONALIDADES / RECURSOS
+         ===================================================================== -->
+    <section class="section section--dark" id="recursos">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow eyebrow--light reveal">Recursos</p>
+          <h2 class="section__title section__title--light reveal" style="--d:1">Tudo o que o seu convite pode ter</h2>
+        </header>
+
+        <ul class="features">
+          <li class="feature reveal"><span class="feature__icon"><svg class="icon"><use href="#i-palette"/></svg></span><h3>Design personalizado</h3><p>Criado do zero para o seu evento.</p></li>
+          <li class="feature reveal" style="--d:1"><span class="feature__icon"><svg class="icon"><use href="#i-pointer"/></svg></span><h3>Botões interativos</h3><p>Ações a um toque de distância.</p></li>
+          <li class="feature reveal" style="--d:2"><span class="feature__icon"><svg class="icon"><use href="#i-timer"/></svg></span><h3>Contagem regressiva</h3><p>Dias, horas, minutos e segundos.</p></li>
+          <li class="feature reveal" style="--d:3"><span class="feature__icon"><svg class="icon"><use href="#i-chat"/></svg></span><h3>Confirmação (RSVP)</h3><p>Pelo WhatsApp, sem complicação.</p></li>
+          <li class="feature reveal"><span class="feature__icon"><svg class="icon"><use href="#i-dashboard"/></svg></span><h3>Painel do cliente</h3><p>Lista de confirmados num link exclusivo.</p></li>
+          <li class="feature reveal" style="--d:1"><span class="feature__icon"><svg class="icon"><use href="#i-pin"/></svg></span><h3>Mapa e como chegar</h3><p>Instruções para ninguém se perder.</p></li>
+          <li class="feature reveal" style="--d:2"><span class="feature__icon"><svg class="icon"><use href="#i-music"/></svg></span><h3>Música de fundo</h3><p>Opcional, com botão para pausar.</p></li>
+          <li class="feature reveal" style="--d:3"><span class="feature__icon"><svg class="icon"><use href="#i-phone"/></svg></span><h3>Celular e computador</h3><p>Se ajusta a qualquer tela.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         6. PAINEL DO CLIENTE (DESTAQUE)
+         ===================================================================== -->
+    <section class="section section--cream" id="painel">
+      <div class="container panel">
+
+        <div class="panel__text">
+          <p class="eyebrow reveal">Painel do cliente</p>
+          <h2 class="section__title reveal" style="--d:1">Saiba quem vai, em tempo real</h2>
+          <p class="reveal" style="--d:2">
+            Ao aprovar o convite, você recebe um link exclusivo para acompanhar a lista de convidados
+            confirmados — sem planilha, sem mensagem perdida no meio da conversa.
+          </p>
+          <ul class="checklist reveal" style="--d:3">
+            <li><svg class="icon"><use href="#i-check"/></svg> Veja quem já confirmou presença</li>
+            <li><svg class="icon"><use href="#i-check"/></svg> Acompanhe o total de convidados</li>
+            <li><svg class="icon"><use href="#i-check"/></svg> Organize o seu evento com tranquilidade</li>
+          </ul>
+        </div>
+
+        <!-- Mockup do painel (exemplo ilustrativo, os dados não são reais) -->
+        <div class="dash reveal" style="--d:2" role="img" aria-label="Exemplo ilustrativo do painel do cliente mostrando 42 convidados confirmados">
+          <div class="dash__top">
+            <span class="dash__dots"><i></i><i></i><i></i></span>
+            <span class="dash__title">Painel do cliente</span>
+            <span class="dash__badge">Exemplo ilustrativo</span>
+          </div>
+          <div class="dash__main">
+            <p class="dash__label">Convidados confirmados</p>
+            <p class="dash__big"><span data-count-to="42">42</span></p>
+            <div class="dash__bar"><span data-bar="70"></span></div>
+            <p class="dash__hint">42 de 60 convites respondidos</p>
+          </div>
+          <ul class="dash__list">
+            <li><span class="avatar">M</span> Maria Souza <em class="ok">Confirmado</em></li>
+            <li><span class="avatar">J</span> João Lima <em class="ok">Confirmado</em></li>
+            <li><span class="avatar">F</span> Família Alves <em class="ok">Confirmado</em></li>
+            <li><span class="avatar">C</span> Carla Mendes <em class="wait">Aguardando</em></li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         7. FAQ
+         ✏️ EDITAR: revise as respostas (principalmente prazo e alterações)
+         ===================================================================== -->
+    <section class="section section--cream" id="faq">
+      <div class="container container--narrow">
+        <header class="section__head">
+          <p class="eyebrow reveal">Perguntas frequentes</p>
+          <h2 class="section__title reveal" style="--d:1">Ficou com alguma dúvida?</h2>
+        </header>
+
+        <div class="faq reveal">
+          <details>
+            <summary>Quanto tempo leva para ficar pronto? <svg class="icon"><use href="#i-chevron"/></svg></summary>
+            <!-- ✏️ EDITAR: coloque o seu prazo real (ex.: "de 3 a 7 dias úteis") -->
+            <p>O prazo depende da complexidade do convite e da rapidez na aprovação. Combinamos a data de entrega logo no primeiro contato, para você se programar com tranquilidade.</p>
+          </details>
+          <details>
+            <summary>Posso pedir qualquer tema? <svg class="icon"><use href="#i-chevron"/></svg></summary>
+            <p>Pode! Cada convite é feito sob medida. Conte sua ideia — cores, personagens, estilo — e nós criamos algo com a cara do seu evento.</p>
+          </details>
+          <details>
+            <summary>Como funciona a confirmação de presença? <svg class="icon"><use href="#i-chevron"/></svg></summary>
+            <p>O convidado toca no botão de confirmação e a resposta chega até você pelo WhatsApp. Quando o seu convite inclui o painel do cliente, você ainda acompanha a lista de confirmados em um link exclusivo.</p>
+          </details>
+          <details>
+            <summary>O convite funciona no celular? <svg class="icon"><use href="#i-chevron"/></svg></summary>
+            <p>Sim. Os convites são pensados primeiro para o celular, onde a maioria dos convidados vai abrir, e também ficam ótimos em tablets e computadores.</p>
+          </details>
+          <details>
+            <summary>Como recebo o convite? <svg class="icon"><use href="#i-chevron"/></svg></summary>
+            <p>Você recebe um link exclusivo do convite, pronto para compartilhar no WhatsApp, Instagram ou onde preferir. Se o seu convite incluir o painel do cliente, o link do painel vem junto.</p>
+          </details>
+          <details>
+            <summary>Posso alterar depois de pronto? <svg class="icon"><use href="#i-chevron"/></svg></summary>
+            <!-- ✏️ EDITAR: ajuste a sua política de alterações -->
+            <p>Sim. Ajustes como data, horário, local ou textos podem ser feitos depois da entrega. Fale com a gente pelo WhatsApp e combinamos os detalhes.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         8. CONTATO / CTA FINAL
+         ===================================================================== -->
+    <section class="section section--dark contact" id="contato">
+      <div class="container contact__grid">
+
+        <div class="contact__text">
+          <p class="eyebrow eyebrow--light reveal">Contato</p>
+          <h2 class="section__title section__title--light reveal" style="--d:1">Vamos criar o seu convite?</h2>
+          <p class="contact__lead reveal" style="--d:2">Conte a sua ideia e receba um orçamento sem compromisso.</p>
+
+          <a class="btn btn--gold btn--xl reveal" style="--d:3" data-wa data-wa-msg="Olá! Quero criar meu convite digital." href="#contato">
+            <svg class="icon"><use href="#i-chat"/></svg> Fale comigo no WhatsApp
+          </a>
+
+          <ul class="contact__list reveal" style="--d:4">
+            <li>
+              <svg class="icon"><use href="#i-mail"/></svg>
+              <!-- ✏️ E-mail é definido em script.js (CONFIG.email) -->
+              <a data-email href="#contato"><span data-email-text>contato@seudominio.com.br</span></a>
+            </li>
+            <li>
+              <svg class="icon"><use href="#i-insta"/></svg>
+              <!-- ✏️ Instagram é definido em script.js (CONFIG.instagram) -->
+              <a data-insta href="#contato" target="_blank" rel="noopener noreferrer"><span data-insta-text>@upconvites</span></a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Formulário simples: monta uma mensagem e abre o WhatsApp (não precisa de servidor) -->
+        <form class="form reveal" style="--d:2" id="contact-form" novalidate>
+          <h3>Ou envie uma mensagem</h3>
+          <label>Nome
+            <input type="text" name="nome" autocomplete="name" required placeholder="Seu nome">
+          </label>
+          <label>E-mail <span class="opt">(opcional)</span>
+            <input type="email" name="email" autocomplete="email" placeholder="voce@email.com">
+          </label>
+          <label>Mensagem
+            <textarea name="mensagem" rows="4" required placeholder="Conte sobre o seu evento: tipo, data, tema..."></textarea>
+          </label>
+          <p class="form__error" id="form-error" role="alert" hidden>Preencha seu nome e a mensagem para continuar.</p>
+          <button class="btn btn--gold" type="submit"><svg class="icon"><use href="#i-send"/></svg> Enviar pelo WhatsApp</button>
+          <p class="form__note">Ao enviar, abrimos o WhatsApp com a sua mensagem já pronta.</p>
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       9. RODAPÉ
+       ===================================================================== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <a class="brand" href="#inicio">
+          <span class="brand__mark" aria-hidden="true"><svg class="icon"><use href="#i-mail"/></svg></span>
+          <span class="brand__name">UpConvites</span>
+        </a>
+        <p class="footer__slogan">Cada convite, uma história.</p>
+      </div>
+
+      <nav class="footer__links" aria-label="Links rápidos">
+        <a href="#sobre">Sobre</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#portfolio">Exemplos</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#faq">Dúvidas</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <div class="footer__social">
+        <a data-insta href="#contato" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="icon"><use href="#i-insta"/></svg></a>
+        <a data-email href="#contato" aria-label="E-mail"><svg class="icon"><use href="#i-mail"/></svg></a>
+        <a data-wa href="#contato" aria-label="WhatsApp"><svg class="icon"><use href="#i-chat"/></svg></a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <!-- O ano é preenchido automaticamente pelo script.js -->
+      <p>© <span id="year">2026</span> UpConvites. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Botão flutuante do WhatsApp -->
+  <a class="fab" data-wa data-wa-msg="Olá! Quero criar meu convite digital." href="#contato" aria-label="Falar no WhatsApp">
+    <svg class="icon"><use href="#i-chat"/></svg>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
